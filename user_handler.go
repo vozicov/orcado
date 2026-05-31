@@ -41,3 +41,12 @@ func find_by_username(username string) (User, error) {
 
 	return User{}, fmt.Errorf("No user found")
 }
+
+func create_user(username string) User {
+	_, err := db.Exec("INSERT INTO users (username, isadmin) VALUES ($1, false)", username)
+	if err != nil {
+		log.Fatal(err)
+	}
+	created_user, _ := find_by_username(username)
+	return created_user
+}
