@@ -17,7 +17,7 @@ func get_all_users() []User {
 
 	for rows.Next() {
 		newuser := User{}
-		rows.Scan(&newuser.ID, &newuser.user_name, &newuser.is_admin)
+		rows.Scan(&newuser.ID, &newuser.user_name, &newuser.is_admin, &newuser.password)
 		users = append(users, newuser)
 
 	}
@@ -35,7 +35,7 @@ func find_by_username(username string) (User, error) {
 	found_user := User{}
 
 	for res.Next() {
-		res.Scan(&found_user.ID, &found_user.user_name, &found_user.is_admin)
+		res.Scan(&found_user.ID, &found_user.user_name, &found_user.is_admin, &found_user.password)
 		return found_user, nil
 	}
 

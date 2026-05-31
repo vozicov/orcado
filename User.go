@@ -4,6 +4,7 @@ type User struct {
 	ID        int
 	user_name string
 	is_admin  bool
+	password  string
 }
 
 func (u *User) promote_user() {
